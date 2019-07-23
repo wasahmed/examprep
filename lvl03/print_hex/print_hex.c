@@ -1,20 +1,15 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void	print_hex(int p)
+void	print_hex(size_t nb)
 {
-	char *str;
+	char	*str;
 
 	str = "0123456789abcdef";
-	if (p == 0)
-		write(1, "0", 1);
-	while (p)
-	{
-		write(1, &str[p % 16], 1);
-		p = p/16;
-	}
+	if (nb >= 16)
+		print_hex(nb / 16);
+	write(1, &str[nb % 16], 1);
 }
-
 int		main(int argc, char *argv[])
 {
 	if (argc == 2)
